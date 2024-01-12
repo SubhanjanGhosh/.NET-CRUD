@@ -1,0 +1,32 @@
+  Dim connString As String
+
+        'Connection String to connect with MySQL database.
+        connString = "server=localhost;userid=root;password=;database=test"
+
+        Dim conn As New MySqlConnection(connString)
+
+        conn.Open()
+        Dim InsertCommand As String
+
+        InsertCommand = "INSERT INTO employee(eid,ename, salary) VALUES(@eid,@ename,@salary)"
+
+        Dim cmd = New MySqlCommand(InsertCommand, conn)
+
+        cmd.Parameters.AddWithValue("@eid", 101)
+        cmd.Parameters.AddWithValue("@ename", "Amit Kumar")
+        cmd.Parameters.AddWithValue("@salary", 43200)
+        cmd.Prepare()
+
+        cmd.ExecuteNonQuery()
+        MsgBox("Record inserted successfully")
+        conn.Close()
+
+
+
+mysql> create database test;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use test;
+Database changed
+mysql> create table employee(eid int, ename char(50), salary int);
+Query OK, 0 rows affected (0.04 sec)

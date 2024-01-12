@@ -1,0 +1,15 @@
+ Dim Query As String
+
+        Dim con As MySqlConnection = New MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=test")
+        con.Open()
+        Query = "Delete FROM employee WHERE eid =" + TextBox1.Text
+
+        Dim cmd As MySqlCommand = New MySqlCommand(Query, con)
+        MsgBox(Query)
+        Dim i As Integer = cmd.ExecuteNonQuery()
+        If (i > 0) Then
+            Label1.Text = "Record is Successfully Deleted"
+        Else
+            Label1.Text = "Record is not Deleted"
+        End If
+        con.Close()

@@ -1,0 +1,21 @@
+Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Dim Query As String
+
+        Dim con As MySqlConnection = New MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=test")
+        con.Open()
+
+        Query = "UPDATE employee SET ename ='" + TextBox1.Text + "',"
+        Query = Query + "salary = " + TextBox2.Text
+        Query = Query + " WHERE eid = " + TextBox3.Text
+
+        Dim cmd As MySqlCommand = New MySqlCommand(Query, con)
+        MsgBox(Query)
+        Dim i As Integer = cmd.ExecuteNonQuery()
+        If (i > 0) Then
+            Label1.Text = "Record is Successfully Updated"
+        Else
+            Label1.Text = "Record is not Updated"
+        End If
+        con.Close()
+    End Sub
+End Class

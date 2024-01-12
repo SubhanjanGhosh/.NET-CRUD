@@ -1,0 +1,23 @@
+Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim Query As String
+        Dim a, b As String
+        a = Val(TextBox1.Text)
+        b = Val(TextBox2.Text)
+        Dim con As MySqlConnection = New MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=test")
+        con.Open()
+        Query = "select* FROM employee WHERE eid =" + TextBox1.Text + " AND "
+        Query = Query + "salary = " + TextBox2.Text
+        Dim cmd As MySqlCommand = New MySqlCommand(Query, con)
+        MsgBox(Query)
+        Dim i As Integer = cmd.ExecuteNonQuery()
+        MsgBox(i)
+        If (i = -1) Then
+            Me.Hide()
+            Form2.Show()
+        Else
+            MsgBox("Error Ocurred")
+        End If
+        con.Close()
+
+
+    End Sub

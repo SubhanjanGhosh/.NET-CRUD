@@ -1,0 +1,7 @@
+ Dim connection As New MySqlConnection("datasource=localhost;port=3306;username=root;password=;database=test")
+        Dim table As New DataTable()
+        Dim adapter As New MySqlDataAdapter("SELECT * FROM employee", connection)
+
+        adapter.Fill(table)
+
+        DataGridView1.DataSource = tables
